@@ -3,7 +3,9 @@ package com.kulgeiko.scala.functions
 object FunctionsMain extends App {
 
 
-  // ------------------------------- Function literals
+
+
+  // ------------------------------- Function literals (first-class functions)
   val someNumbers: List[Int] = List(1,2,3,4,5,6,7,8,9)
 
   // (x > 5) - anonymous function literal
@@ -14,6 +16,23 @@ object FunctionsMain extends App {
   val add = (a: Int) => a > 5
   val filtered2 = someNumbers.filter(add)
   println(filtered2)
+
+  // with placeholder syntax
+  val filtered3 = someNumbers.filter(_ > 5)
+  println(filtered3)
+
+  // ------------------------------- Partly applied function
+  def sum (a: Int, b: Int, c:Int) = a + b + c
+  val a = sum _
+  val b = a(1, 2, 3)
+
+  // ------------------------------- Closure
+
+  val more: Int = 3
+  val cl = (x: Int) => x + more
+
+
+
 
 
   // ------------------------------- Implicit conversions
