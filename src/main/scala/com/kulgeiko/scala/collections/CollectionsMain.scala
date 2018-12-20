@@ -15,10 +15,20 @@ object CollectionsMain extends App {
   println(pair._3)
   println(pair._4)
 
+  println("---------------------------------- List ----------------------------------")
+
+  var myList: Seq[String] = Nil
+  myList + "Audi"
+  myList + "Mitsubishi"
+  println(myList)
+
+  val oneTwoThree = 1 :: 2 :: 3 :: Nil
+  println(oneTwoThree)
+  println(oneTwoThree.size)
+  println(oneTwoThree.length)
 
 
-
-  // ---------------------------------- Set ----------------------------------
+  println("---------------------------------- Set ----------------------------------")
 
   var mySet = Set("apple", "pear", "", null, "plum")
   var mySet2 = Set("apple", "pear", "", null, "plum") - (null, "")
@@ -33,6 +43,12 @@ object CollectionsMain extends App {
   println(nilSet.size)
   println(nilSet.isEmpty)
 
+  val mySet3 = Set(1, 2)
+  val mySet4 = Set(3, 4, 5, 1)
+  var mySet5 = Set.empty
+
+  val mySet6 = mySet3 ++ mySet4 ++ mySet5
+  println(mySet6)
 
 
 }

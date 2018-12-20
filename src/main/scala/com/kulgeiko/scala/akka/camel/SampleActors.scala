@@ -1,58 +1,57 @@
-package com.kulgeiko.scala.akka.actor
+package com.kulgeiko.scala.akka.camel
 
-//import akka.actor.Actor
 import akka.actor.Actor
-//import akka.camel._
+import akka.camel._
 
 object SampleActors {
   // ------------------------------------------------------------------
   //  Plain actors
   // ------------------------------------------------------------------
+/*
 
-  /*
   class SimpleActor extends Actor {
-    protected def receive = {
-      case "stop" => self.stop
+    override def receive = {
+      case "stop" => self
       case msg    => println("message = %s" format msg)
     }
   }
-*/
+
   // ------------------------------------------------------------------
   //  Consumer actors
   // ------------------------------------------------------------------
-/*
-  class SedaConsumer extends Actor with Consumer {
-    def endpointUri = "seda:example"
-    protected def receive = {
-      case Message("stop", headers) => self.stop
-      case Message(body, headers)   => println("message = %s" format body)
-    }
-  }
 
-  class HttpConsumer1 extends Actor with Consumer {
-    def endpointUri = "jetty:http://0.0.0.0:8811/consumer1"
+   class SedaConsumer extends Actor with Consumer {
+     def endpointUri = "seda:example"
+     protected def receive = {
+       case Message("stop", headers) => self.stop
+       case Message(body, headers)   => println("message = %s" format body)
+     }
+   }
 
-    protected def receive = {
-      case msg: Message => self.reply("received %s" format msg.bodyAs[String])
-    }
-  }
+     class HttpConsumer1 extends Actor with Consumer {
+       def endpointUri = "jetty:http://0.0.0.0:8811/consumer1"
 
-  class HttpConsumer2 extends Actor with Consumer {
-    def endpointUri = "jetty:http://0.0.0.0:8811/consumer2"
+       protected def receive = {
+         case msg: Message => self.reply("received %s" format msg.bodyAs[String])
+       }
+     }
 
-    protected def receive = {
-      case msg: Message => {
-        val body = "<received>%s</received>" format msg.bodyAs[String]
-        val headers = Map("Content-Type" -> "application/xml")
-        self.reply(Message(body, headers))
-      }
-    }
-  }
-*/
+     class HttpConsumer2 extends Actor with Consumer {
+       def endpointUri = "jetty:http://0.0.0.0:8811/consumer2"
+
+       protected def receive = {
+         case msg: Message => {
+           val body = "<received>%s</received>" format msg.bodyAs[String]
+           val headers = Map("Content-Type" -> "application/xml")
+           self.reply(Message(body, headers))
+         }
+       }
+     }
+
   // ------------------------------------------------------------------
   //  Producer actors
   // ------------------------------------------------------------------
-/*
+
   class HttpProducer1 extends Actor with Producer {
     def endpointUri = "http://localhost:8811/consumer2"
   }
@@ -69,5 +68,5 @@ object SampleActors {
   class JmsProducer extends Actor with Producer with Oneway {
     def endpointUri = "jms:queue:test"
   }
-  */
+*/
 }
