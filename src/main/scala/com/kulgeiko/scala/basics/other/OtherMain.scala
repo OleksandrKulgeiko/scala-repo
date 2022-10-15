@@ -37,4 +37,11 @@ object OtherMain extends App {
   //val (first, second) = ss.splitAt(3,-1)split(".csv")
   //println(first + "_0000" + second)
 
+  val mySrt = "Hello, world, hey"
+
+  val repl1 = (s: String) => s.replace(',',';')
+  val repl2 = (s: String) => s.map(c => if (c == ',') ';' else c)
+
+  val mySrt2 = repl2(mySrt)
+  println(mySrt2)
 }
